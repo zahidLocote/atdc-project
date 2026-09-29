@@ -1,75 +1,47 @@
-# React + TypeScript + Vite
+﻿# ATDC Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación frontend con React, TypeScript, Vite y Tailwind CSS. Actualmente muestra «Hello world!» como pantalla inicial.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js 24 (entorno comprobado: 24.16.0).
+- npm (entorno comprobado: 11.13.0).
 
-## React Compiler
+No requiere backend, base de datos, credenciales ni archivo `.env`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Ejecutar en Windows / PowerShell
 
-## Expanding the ESLint configuration
+Desde la carpeta del repositorio:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```powershell
+npm.cmd ci
+npm.cmd run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Abre la dirección que indique Vite, normalmente http://localhost:5173. Si el puerto está ocupado, Vite elegirá otro. Detén el servidor con Ctrl+C.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Se usa `npm.cmd` porque PowerShell puede bloquear `npm.ps1` por su política de ejecución. No hace falta cambiar esa política. En otras terminales puedes usar `npm` en lugar de `npm.cmd`.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+`npm.cmd ci` instala las versiones de `package-lock.json` y requiere acceso al registro de npm. Si las dependencias ya están instaladas, puedes iniciar directamente con `npm.cmd run dev`.
 
+## Validación y compilación
+
+```powershell
+npm.cmd run lint
+npm.cmd run build
+npm.cmd run preview
 ```
+
+- `lint`: revisa el código con ESLint.
+- `build`: comprueba TypeScript y genera la aplicación en `dist/`.
+- `preview`: sirve la compilación de `dist/`, normalmente en http://localhost:4173. Ejecuta primero `build`.
+
+No hay una suite de pruebas automatizadas configurada.
+
+## Estructura
+
+- `src/App.tsx`: pantalla principal.
+- `src/main.tsx`: punto de entrada de React.
+- `src/index.css`: estilos e importación de Tailwind.
+- `vite.config.ts`: integración de React y Tailwind con Vite.
+- `public/`: archivos estáticos.
