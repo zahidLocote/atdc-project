@@ -1,3 +1,4 @@
+import { ImageUploader } from './components/ImageUploader'
 import NavBar from './components/NavBar'
 
 function App() {
@@ -5,6 +6,7 @@ function App() {
   return (
     <div>
       <NavBar />
+      <ImageUploader />
     </div>
   )
 }
